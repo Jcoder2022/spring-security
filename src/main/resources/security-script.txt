@@ -1,0 +1,40 @@
+
+drop database security;
+create database security;
+use security;
+
+CREATE TABLE IF NOT EXISTS user(
+     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     username VARCHAR(100) NOT NULL,
+     password VARCHAR(200) NOT NULL,
+     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS role(
+     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     rolename VARCHAR(100) NOT NULL,
+     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)ENGINE=INNODB;;
+
+CREATE TABLE IF NOT EXISTS user_role(
+     user_id INT,
+     role_id INT,
+     Constraint FOREIGN KEY (user_id) REFERENCES user(id),
+     Constraint FOREIGN KEY (role_id) REFERENCES role(id)
+     )ENGINE=INNODB;
+
+
+INSERT INTO role (rolename)
+VALUES ("ADMIN");
+
+INSERT INTO role (rolename)
+VALUES ("USER");
+
+INSERT INTO user (username,password)
+VALUES ("Ryan","$2a$12$yFGqN6HIWmLC37C3BRSDXu71XTUY432UC8wIWLc.h9nAKPX2pRATa");
+
+INSERT INTO user (username,password)
+VALUES ("Muhammad Abdullah","$2a$12$yFGqN6HIWmLC37C3BRSDXu71XTUY432UC8wIWLc.h9nAKPX2pRATa");
+
+INSERT INTO user (username,password)
+VALUES ("Jalal","$2a$12$yFGqN6HIWmLC37C3BRSDXu71XTUY432UC8wIWLc.h9nAKPX2pRATa");
